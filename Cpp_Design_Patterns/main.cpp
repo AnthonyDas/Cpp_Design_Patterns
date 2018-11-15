@@ -12,6 +12,15 @@
 #include "3.4_Facade.h"
 #include "3.5_Flyweight.h"
 
+#include "4.1_ChainOfResponsibility.h"
+#include "4.2_Command.h"
+#include "4.3_Interpreter.h"
+#include "4.4_Iterator.h"
+#include "4.5_Mediator.h"
+#include "4.6_Memento.h"
+#include "4.7_Observer.h"
+#include "4.8_State.h"
+
 void builder() {
 	HawaiianPizzaBuilder hawaiianPizzaBuilder;
 	SpicyPizzaBuilder    spicyPizzaBuilder;
@@ -71,6 +80,17 @@ void singleton() {
 	std::cout << "The value of the singleton: " << singleton.m_a << std::endl;
 }
 
+void command() {
+	Light lamp;
+	FlipUpCommand switchUp(lamp);
+	FlipDownCommand switchDown(lamp);
+
+	Switch s(switchUp, switchDown);
+	s.flipUp();
+	s.flipDown();
+}
+
+
 int main() {
 
 	builder();
@@ -85,6 +105,8 @@ int main() {
 	decorator2();
 	facade();
 	flyweight();
+	chain_of_responsibility();
+	command();
 
 	std::cout << "Finished - please type something to quit";
 	int dummy;

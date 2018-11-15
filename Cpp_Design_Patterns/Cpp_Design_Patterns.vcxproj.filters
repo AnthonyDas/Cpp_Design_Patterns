@@ -51,6 +51,9 @@
     <ClCompile Include="2.3_Prototype.h">
       <Filter>Header Files\2. Creational Patterns</Filter>
     </ClCompile>
+    <ClCompile Include="4.2_Command.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2.2_Factory.h">
@@ -84,6 +87,24 @@
       <Filter>Header Files\3. Structural Patterns</Filter>
     </ClInclude>
     <ClInclude Include="4.1_ChainOfResponsibility.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.3_Interpreter.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.4_Iterator.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.5_Mediator.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.6_Memento.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.7_Observer.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.8_State.h">
       <Filter>Header Files\4. Behavioral Patterns</Filter>
     </ClInclude>
   </ItemGroup>
