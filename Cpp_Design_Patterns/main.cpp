@@ -9,6 +9,8 @@
 #include "3.2_Bridge.h"
 #include "3.3_Composite.h"
 #include "3.3.1_Decorator.h"
+#include "3.4_Facade.h"
+#include "3.5_Flyweight.h"
 
 void builder() {
 	HawaiianPizzaBuilder hawaiianPizzaBuilder;
@@ -81,6 +83,8 @@ int main() {
 	composite();
 	decorator1();
 	decorator2();
+	facade();
+	flyweight();
 
 	std::cout << "Finished - please type something to quit";
 	int dummy;

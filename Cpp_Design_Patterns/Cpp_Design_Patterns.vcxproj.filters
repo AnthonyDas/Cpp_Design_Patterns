@@ -28,6 +28,12 @@
     <Filter Include="Header Files\3. Structural Patterns">
       <UniqueIdentifier>{40397274-94b1-448d-bf57-fe03fdd24a1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\4. Behavioral Patterns">
+      <UniqueIdentifier>{c120690d-a12e-4771-b04c-ef473b77be68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\4. Behavioral Patterns">
+      <UniqueIdentifier>{860624c5-81fd-4c28-9fde-e391c9c5e283}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -64,6 +70,21 @@
     </ClInclude>
     <ClInclude Include="3.4_Facade.h">
       <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.5_Flyweight.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.6_Proxy.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.7_CuriouslyRecurringTemplate.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.8_InterfaceBasedProgramming(IBP).h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.1_ChainOfResponsibility.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
