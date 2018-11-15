@@ -13,5 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Behavioral Patterns">
+      <UniqueIdentifier>{07678b76-d316-40e1-b257-380b036fed06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\2. Creational Patterns">
+      <UniqueIdentifier>{e787bbf8-fdcf-41b5-8946-90db77942112}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\2. Creational Patterns">
+      <UniqueIdentifier>{e3570d0e-e1e2-4ab3-b10c-b4e792341fd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3. Structural Patterns">
+      <UniqueIdentifier>{98d20924-4e47-4408-afa0-62839a958637}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3. Structural Patterns">
+      <UniqueIdentifier>{40397274-94b1-448d-bf57-fe03fdd24a1d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="2.4_Singleton.cpp">
+      <Filter>Source Files\2. Creational Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="2.4_Singleton.h">
+      <Filter>Header Files\2. Creational Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="2.1_Builder.h">
+      <Filter>Header Files\2. Creational Patterns</Filter>
+    </ClCompile>
+    <ClCompile Include="2.3_Prototype.h">
+      <Filter>Header Files\2. Creational Patterns</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="2.2_Factory.h">
+      <Filter>Header Files\2. Creational Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.1_Adapter.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.2_Bridge.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.3_Composite.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.3.1_Decorator.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="3.4_Facade.h">
+      <Filter>Header Files\3. Structural Patterns</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
