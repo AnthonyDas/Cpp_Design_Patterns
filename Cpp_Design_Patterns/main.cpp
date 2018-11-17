@@ -105,8 +105,12 @@ int main() {
 	decorator2();
 	facade();
 	flyweight();
+	
 	chain_of_responsibility();
 	command();
+	interpreter();
+	mediator();
+	memento();
 
 	std::cout << "Finished - please type something to quit";
 	int dummy;
