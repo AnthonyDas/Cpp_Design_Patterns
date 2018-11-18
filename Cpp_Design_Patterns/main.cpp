@@ -115,6 +115,7 @@ int main() {
 	mediator();
 	memento();
 	observer();
+	state();
 	strategy();
 	template_pattern();
 	visitor();
