@@ -21,7 +21,6 @@
   <ItemGroup>
     <ClCompile Include="2.1_Builder.h" />
     <ClCompile Include="2.3_Prototype.h" />
-    <ClCompile Include="2.4_Singleton.cpp" />
     <ClCompile Include="2.4_Singleton.h" />
     <ClCompile Include="4.2_Command.h" />
     <ClCompile Include="main.cpp" />
@@ -42,6 +41,8 @@
     <ClInclude Include="4.12_Model-View-Controller(MVC).h" />
     <ClInclude Include="4.1_ChainOfResponsibility.h" />
     <ClInclude Include="4.3_Interpreter.h" />
+    <ClInclude Include="4.4.1_Aggregate.h" />
+    <ClInclude Include="4.4.1_IteratorTemplate.h" />
     <ClInclude Include="4.4_Iterator.h" />
     <ClInclude Include="4.5_Mediator.h" />
     <ClInclude Include="4.6_Memento.h" />

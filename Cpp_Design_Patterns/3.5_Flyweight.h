@@ -81,10 +81,10 @@ void flyweight() {
 	FlyweightCharacterAbstractBuilder::setFontsAndNames();
 	unsigned short limit = NUMBER_OF_SAME_TYPE_CHARS;
 
-	for (unsigned short i = 0; i < limit; i++) {
+	for (unsigned short i = 0; i < limit; ++i) {
 		chars.push_back(FlyweightCharacterAbstractBuilder::createFlyweightCharacter(0, 0, i));
-		chars.push_back(FlyweightCharacterAbstractBuilder::createFlyweightCharacter(1, 1, i + 1 * limit));
-		chars.push_back(FlyweightCharacterAbstractBuilder::createFlyweightCharacter(2, 2, i + 2 * limit));
+		chars.push_back(FlyweightCharacterAbstractBuilder::createFlyweightCharacter(1, 1, (unsigned short)(i + 1 * limit)));
+		chars.push_back(FlyweightCharacterAbstractBuilder::createFlyweightCharacter(2, 2, (unsigned short)(i + 2 * limit)));
 	}
 
 	/* Each chararacter object stores links to its fontName and fontSize.

@@ -59,9 +59,8 @@ public:
 		return std::make_unique<Memento>(*this);
 	}
 
-	void reinstateMemento(Memento* mem) {
-		*this = mem->snapshot();
-	}
+	// Defined later as Memento an incomplete type here
+	void reinstateMemento(Memento* );
 };
 
 class Memento {
@@ -71,9 +70,13 @@ public:
 	Memento(const Object& obj) : object(obj) {}
 
 	// Want a snapshot of Object itself because of its many data members
-	const Object& snapshot() const { return object; }  
+	const Object& snapshot() const { return object; }
 };
 
+// Memento now a complete type
+void Object::reinstateMemento(Memento* mem) {
+	*this = mem->snapshot();
+}
 
 class Command2 {
 
@@ -85,8 +88,8 @@ class Command2 {
 
 	static std::vector<Command2*> commands;
 	static std::vector<std::unique_ptr<Memento> > mementos;
-	static int numCommands;
-	static int maxCommands;
+	static size_t numCommands;
+	static size_t maxCommands;
 
 public:
 	Command2(std::shared_ptr<Object> rec, Action act) : receiver(rec), action(act) {}
@@ -131,8 +134,8 @@ public:
 
 std::vector<Command2*> Command2::commands;
 std::vector<std::unique_ptr<Memento> > Command2::mementos;
-int Command2::numCommands = 0;
-int Command2::maxCommands = 0;
+size_t Command2::numCommands = 0;
+size_t Command2::maxCommands = 0;
 
 void memento() {
 	int i;

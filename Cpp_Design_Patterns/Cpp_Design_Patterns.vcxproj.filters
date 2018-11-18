@@ -36,9 +36,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="2.4_Singleton.cpp">
-      <Filter>Source Files\2. Creational Patterns</Filter>
-    </ClCompile>
     <ClCompile Include="2.4_Singleton.h">
       <Filter>Header Files\2. Creational Patterns</Filter>
     </ClCompile>
@@ -114,6 +111,12 @@
       <Filter>Header Files\4. Behavioral Patterns</Filter>
     </ClInclude>
     <ClInclude Include="4.12_Model-View-Controller(MVC).h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.4.1_IteratorTemplate.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.4.1_Aggregate.h">
       <Filter>Header Files\4. Behavioral Patterns</Filter>
     </ClInclude>
   </ItemGroup>

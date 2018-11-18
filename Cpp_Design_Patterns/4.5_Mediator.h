@@ -14,7 +14,24 @@ lets you vary their interaction independently. */
 #include <array>
 #include <memory>
 
-class MediatorInterface; // Forward declaration
+class ColleagueInterface; // Forward declaration
+
+class MediatorInterface {
+	std::list<std::shared_ptr<ColleagueInterface> > colleagueList;
+
+public:
+
+	virtual void distributeMessage(const ColleagueInterface*, const std::string&) const = 0; // Pure virtual
+
+	virtual void registerColleague(std::shared_ptr<ColleagueInterface> colleague) {
+		colleagueList.emplace_back(colleague);
+	}
+
+protected:
+	const std::list<std::shared_ptr<ColleagueInterface> >& getColleagueList() const {
+		return colleagueList;
+	}
+};
 
 class ColleagueInterface {
 	std::string name;
@@ -41,22 +58,6 @@ public:
 	}
 };
 
-class MediatorInterface {
-	std::list<std::shared_ptr<ColleagueInterface> > colleagueList;
-
-public:
-
-	virtual void distributeMessage(const ColleagueInterface*, const std::string&) const = 0; // Pure virtual
-
-	virtual void registerColleague(std::shared_ptr<ColleagueInterface> colleague) {
-		colleagueList.emplace_back(colleague);
-	}
-
-protected:
-	const std::list<std::shared_ptr<ColleagueInterface> >& getColleagueList() const {
-		return colleagueList;
-	}
-};
 
 class Mediator : public MediatorInterface {
 

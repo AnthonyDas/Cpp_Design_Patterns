@@ -16,12 +16,12 @@ to consider for the job.*/
 #include <memory>
 
 // Our Abstract base class
-class Car {
+class Car1 {
 protected:
 	std::string m_str;
 
 public:
-	Car() : m_str("Unknown Car") {};
+	Car1() : m_str("Unknown Car") {};
 
 	virtual std::string getDescription() {
 		return m_str;
@@ -29,13 +29,13 @@ public:
 
 	virtual double getCost() = 0; // Pure virtual
 
-	virtual ~Car() {
+	virtual ~Car1() {
 		std::cout << "~Car()" << std::endl;
 	}
 };
 
 // Decorator Base class
-class OptionsDecorator : public Car {
+class OptionsDecorator : public Car1 {
 public:
 
 	// virtual std::string getDescription() = 0; // Pure virtual
@@ -46,7 +46,7 @@ public:
 };
 
 
-class CarModel1 : public Car {
+class CarModel1 : public Car1 {
 public:
 	CarModel1() {
 		m_str = "CarModel1";
@@ -63,10 +63,10 @@ public:
 
 
 class Navigation : public OptionsDecorator {
-	std::unique_ptr<Car> m_b;
+	std::unique_ptr<Car1> m_b;
 
 public:
-	Navigation(std::unique_ptr<Car>&& b) : m_b(std::move(b)) {};
+	Navigation(std::unique_ptr<Car1>&& b) : m_b(std::move(b)) {};
 	
 	std::string getDescription() {
 		return m_b->getDescription() + ", Navigation";
@@ -81,9 +81,9 @@ public:
 };
 
 class PremiumSoundSystem : public OptionsDecorator {
-	std::unique_ptr<Car> m_b;
+	std::unique_ptr<Car1> m_b;
 public:
-	PremiumSoundSystem(std::unique_ptr<Car>&& b) : m_b(std::move(b)) {};
+	PremiumSoundSystem(std::unique_ptr<Car1>&& b) : m_b(std::move(b)) {};
 
 	std::string getDescription() {
 		return m_b->getDescription() + ", PremiumSoundSystem";
@@ -98,9 +98,9 @@ public:
 };
 
 class ManualTransmission : public OptionsDecorator {
-	std::unique_ptr<Car> m_b;
+	std::unique_ptr<Car1> m_b;
 public:
-	ManualTransmission(std::unique_ptr<Car>&& b) : m_b(std::move(b)) {};
+	ManualTransmission(std::unique_ptr<Car1>&& b) : m_b(std::move(b)) {};
 
 	std::string getDescription() {
 		return m_b->getDescription() + ", ManualTransmission";
@@ -116,7 +116,7 @@ public:
 
 void decorator1() {
 	// Create our Car that we want to buy
-	std::unique_ptr<Car> b = std::make_unique<CarModel1>();
+	std::unique_ptr<Car1> b = std::make_unique<CarModel1>();
 
 	std::cout << "Base model of " << b->getDescription() << " costs $" << b->getCost() << std::endl;
 

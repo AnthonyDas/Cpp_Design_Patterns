@@ -1,4 +1,4 @@
-#pragma once;
+#pragma once
 
 /* https://en.wikibooks.org/wiki/C%2B%2B_Programming/Code/Design_Patterns#Singleton
 
@@ -107,28 +107,38 @@ class Singleton {
 	
 	static std::mutex m;
 
+	// static std::unique_ptr<Singleton> instance_ptr;
+
+	int m_a;
+
 public:
 
 	static Singleton& GetInstance() {
 		std::lock_guard<std::mutex> lck(m);
 
-		std::cout << "Get Instance" << std::endl;
+		std::cout << "Singleton GetInstance()" << std::endl;
 
 		// Initialized during first access
-		static Singleton inst(1);
+		static Singleton instance_ptr(1);
 
-		return inst;
+		return instance_ptr;
 	}
 
-	int m_a;
+	~Singleton() { std::cout << "Singleton Destructor" << std::endl; }
 
-	~Singleton() { std::cout << "In Destructor" << std::endl; }
+	int getA() const {
+		return m_a;
+	}
 
-	// Prevent copying
+	// Prevent copying and moving
 	Singleton(const Singleton&) = delete;
 	Singleton& operator=(const Singleton&) = delete;
+	Singleton(Singleton&&) = delete;
+	Singleton& operator=(const Singleton&&) = delete;
 
 private:
 
-	Singleton(int a) : m_a(a) { std::cout << "In Constructor" << std::endl; }
+	Singleton(int a) : m_a(a) { std::cout << "Singleton Constructor: value " << a << std::endl; }
 };
+
+// std::mutex Singleton::m;

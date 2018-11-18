@@ -23,8 +23,11 @@ class DivingState;
 
 class FighterState {
 public:
-	static std::shared_ptr<StandingState> standing;
-	static std::shared_ptr<DivingState> diving;
+	// Need to postpone initialisation as incomplete types 
+	static std::shared_ptr<FighterState> standing;
+	static std::shared_ptr<FighterState> diving;
+	static std::shared_ptr<FighterState> ducking;
+	static std::shared_ptr<FighterState> jumping;
 
 	virtual ~FighterState() = default;
 
@@ -32,8 +35,44 @@ public:
 	virtual void update(Fighter&) = 0; // Pure virtual
 };
 
-std::shared_ptr<StandingState> FighterState::standing(new StandingState);
-std::shared_ptr<DivingState> FighterState::diving(new DivingState);
+class Fighter {
+	std::string m_name;
+	std::shared_ptr<FighterState> m_state;
+	int m_fatigueLevel = std::rand() % 10;
+
+public:
+	Fighter(const std::string& name) : m_name(name), m_state(FighterState::standing) {}
+
+	std::string getName() const {
+		return m_name;
+	}
+
+	int getFatigueLevel() const {
+		return m_fatigueLevel;
+	}
+
+	// Delegate input handling to current 'state'.
+	virtual void handleInput(Input input) {
+		m_state->handleInput(*this, input);
+	}
+
+	void changeState(std::shared_ptr<FighterState> state) {
+		m_state = state;
+		// Delegate updating to new 'state'
+		m_state->update(*this);
+	}
+
+	void standsUp() { std::cout << getName() << " stands up." << std::endl; }
+	void ducksDown() { std::cout << getName() << " ducks down." << std::endl; }
+	void jumps() { std::cout << getName() << " jumps into the air." << std::endl; }
+	void dives() { std::cout << getName() << " makes a dive attack in the middle of the jump!" << std::endl; }
+	void feelsStrong() { std::cout << getName() << " feels strong!" << std::endl; }
+
+	void changeFatigueLevelBy(int change) {
+		m_fatigueLevel += change;
+		std::cout << "fatigueLevel = " << m_fatigueLevel << std::endl;
+	}
+};
 
 class DuckingState : public FighterState {
 	int chargingTime;
@@ -85,11 +124,11 @@ public:
 			break;
 		case Input::DUCK_DOWN:
 			fighter.ducksDown();
-			fighter.changeState(std::shared_ptr<DuckingState>(new DuckingState));
+			fighter.changeState(FighterState::ducking);
 			break;
 		case Input::JUMP:
 			fighter.jumps();
-			fighter.changeState(std::shared_ptr<JumpingState>(new JumpingState));
+			fighter.changeState(FighterState::jumping);
 		default:
 			std::cout << "One cannot do that while standing.  " << fighter.getName()
 				<< " remains standing by default." << std::endl;
@@ -148,42 +187,13 @@ public:
 	}
 };
 
-
-class Fighter {
-	std::string name;
-	std::shared_ptr<FighterState> state;
-	int fatigueLevel = std::rand() % 10;
-
-public:
-	Fighter(const std::string& newName) : name(newName), state(FighterState::standing) {}
-
-	std::string getName() const { return name; }
-	int getFatigueLevel() const { return fatigueLevel; }
-
-	// Delegate input handling to current 'state'.
-	virtual void handleInput(Input input) { state->handleInput(*this, input); }  
-
-	void changeState(std::shared_ptr<FighterState> newState) {
-		state = newState; 
-		// Delegate updating to new 'state'
-		state->update(*this);
-	}
-
-	void standsUp() { std::cout << getName() << " stands up." << std::endl; }
-	void ducksDown() { std::cout << getName() << " ducks down." << std::endl; }
-	void jumps() { std::cout << getName() << " jumps into the air." << std::endl; }
-	void dives() { std::cout << getName() << " makes a dive attack in the middle of the jump!" << std::endl; }
-	void feelsStrong() { std::cout << getName() << " feels strong!" << std::endl; }
-
-	void changeFatigueLevelBy(int change) {
-		fatigueLevel += change;
-		std::cout << "fatigueLevel = " << fatigueLevel << std::endl;
-	}
-};
-
+std::shared_ptr<FighterState> FighterState::standing(new StandingState);
+std::shared_ptr<FighterState> FighterState::diving(new DivingState);
+std::shared_ptr<FighterState> FighterState::ducking(new DuckingState);
+std::shared_ptr<FighterState> FighterState::jumping(new JumpingState);
 
 void state() {
-	std::srand(std::time(nullptr));
+	std::srand((unsigned int)std::time(nullptr));
 	Fighter rex("Rex the Fighter"), borg("Borg the Fighter");
 	std::cout << rex.getName() << " and " << borg.getName() << " are currently standing." << std::endl;
 

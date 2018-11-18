@@ -80,7 +80,7 @@ or CBellyMonster. */
 
 void singleton() {
 	Singleton& singleton = Singleton::GetInstance();
-	std::cout << "The value of the singleton: " << singleton.m_a << std::endl;
+	std::cout << "The value of the singleton: " << singleton.getA() << std::endl;
 }
 
 void command() {
@@ -112,6 +112,9 @@ int main() {
 	chain_of_responsibility();
 	command();
 	interpreter();
+	iterator1();
+	iterator2();
+	iterator3();
 	mediator();
 	memento();
 	observer();
