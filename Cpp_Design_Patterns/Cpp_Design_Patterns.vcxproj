@@ -37,6 +37,9 @@
     <ClInclude Include="3.6_Proxy.h" />
     <ClInclude Include="3.7_CuriouslyRecurringTemplate.h" />
     <ClInclude Include="3.8_InterfaceBasedProgramming(IBP).h" />
+    <ClInclude Include="4.10_Template.h" />
+    <ClInclude Include="4.11_Visitor.h" />
+    <ClInclude Include="4.12_Model-View-Controller(MVC).h" />
     <ClInclude Include="4.1_ChainOfResponsibility.h" />
     <ClInclude Include="4.3_Interpreter.h" />
     <ClInclude Include="4.4_Iterator.h" />
@@ -44,6 +47,7 @@
     <ClInclude Include="4.6_Memento.h" />
     <ClInclude Include="4.7_Observer.h" />
     <ClInclude Include="4.8_State.h" />
+    <ClInclude Include="4.9_Strategy.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -105,6 +109,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

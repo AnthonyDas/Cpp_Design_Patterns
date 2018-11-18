@@ -20,6 +20,9 @@
 #include "4.6_Memento.h"
 #include "4.7_Observer.h"
 #include "4.8_State.h"
+#include "4.9_Strategy.h"
+#include "4.10_Template.h"
+#include "4.11_Visitor.h"
 
 void builder() {
 	HawaiianPizzaBuilder hawaiianPizzaBuilder;
@@ -111,6 +114,10 @@ int main() {
 	interpreter();
 	mediator();
 	memento();
+	observer();
+	strategy();
+	template_pattern();
+	visitor();
 
 	std::cout << "Finished - please type something to quit";
 	int dummy;

@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Behavioral Patterns">
-      <UniqueIdentifier>{07678b76-d316-40e1-b257-380b036fed06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\2. Creational Patterns">
       <UniqueIdentifier>{e787bbf8-fdcf-41b5-8946-90db77942112}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,18 @@
       <Filter>Header Files\4. Behavioral Patterns</Filter>
     </ClInclude>
     <ClInclude Include="4.8_State.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.9_Strategy.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.10_Template.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.11_Visitor.h">
+      <Filter>Header Files\4. Behavioral Patterns</Filter>
+    </ClInclude>
+    <ClInclude Include="4.12_Model-View-Controller(MVC).h">
       <Filter>Header Files\4. Behavioral Patterns</Filter>
     </ClInclude>
   </ItemGroup>
