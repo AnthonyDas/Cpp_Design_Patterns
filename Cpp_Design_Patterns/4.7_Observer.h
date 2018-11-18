@@ -29,24 +29,18 @@ After subscribing the listening objects will be notified by a way of method call
 #include <iostream>
 
 // The Abstract Observer
-class ObserverBoardInterface {
+class ObserverInterface {
 public:
-	virtual void update(double a, double b, double c) = 0;
-};
-
-// Abstract Interface for Displays
-class DisplayBoardInterface {
-public:
-	virtual void show() = 0;
+	virtual void update(double a, double b, double c) = 0; // Pure virtual
+	virtual void show() const = 0; // Pure virtual
 };
 
 // The Abstract Subject
-class WeatherDataInterface
-{
+class WeatherDataInterface {
 public:
-	virtual void registerOb(ObserverBoardInterface* ob) = 0;
-	virtual void removeOb(ObserverBoardInterface* ob) = 0;
-	virtual void notifyOb() = 0;
+	virtual void registerObj(ObserverInterface* ) = 0; // Pure virtual
+	virtual void removeObj(ObserverInterface* ) = 0; // Pure virtual
+	virtual void notifyObj() = 0;
 };
 
 // The Concrete Subject
@@ -54,49 +48,46 @@ class ParaWeatherData : public WeatherDataInterface {
 	double m_humidity;
 	double m_temperature;
 	double m_pressure;
-	std::list<ObserverBoardInterface* > m_obs;
+	std::list<ObserverInterface* > m_objs;
 
 public:
 	void SensorDataChange(double a, double b, double c) {
 		m_humidity = a;
 		m_temperature = b;
 		m_pressure = c;
-		notifyOb();
+		notifyObj();
 	}
 
-	void registerOb(ObserverBoardInterface* ob) {
-		m_obs.push_back(ob);
+	void registerObj(ObserverInterface* obj) override {
+		m_objs.push_back(obj);
 	}
 
-	void removeOb(ObserverBoardInterface* ob) {
-		m_obs.remove(ob);
+	void removeObj(ObserverInterface* obj) override {
+		m_objs.remove(obj);
 	}
 
 protected:
-	void notifyOb() {
-		std::list<ObserverBoardInterface*>::iterator pos = m_obs.begin();
-		while (pos != m_obs.end())
-		{
-			((ObserverBoardInterface*)(*pos))->update(m_humidity, m_temperature, m_pressure);
-			(dynamic_cast<DisplayBoardInterface*>(*pos))->show();
-			++pos;
+	void notifyObj() override {
+		for (auto it = m_objs.begin(); it != m_objs.end(); ++it) {
+			(*it)->update(m_humidity, m_temperature, m_pressure);
+			(*it)->show();
 		}
 	}
 };
 
 // A Concrete Observer
-class CurrentConditionBoard : public ObserverBoardInterface, public DisplayBoardInterface {
+class CurrentCondition : public ObserverInterface{
 	double m_h;
 	double m_t;
 	double m_p;
 	ParaWeatherData& m_data;
 
 public:
-	CurrentConditionBoard(ParaWeatherData& a) :m_data(a) {
-		m_data.registerOb(this);
+	CurrentCondition(ParaWeatherData &a) : m_data(a) {
+		m_data.registerObj(this);
 	}
 
-	void show() {
+	void show() const override {
 		std::cout << "_____CurrentConditionBoard_____" << std::endl;
 		std::cout << "humidity: " << m_h << std::endl;
 		std::cout << "temperature: " << m_t << std::endl;
@@ -104,7 +95,7 @@ public:
 		std::cout << "_______________________________" << std::endl;
 	}
 
-	void update(double h, double t, double p) {
+	void update(double h, double t, double p) override {
 		m_h = h;
 		m_t = t;
 		m_p = p;
@@ -112,27 +103,27 @@ public:
 };
 
 // A Concrete Observer
-class StatisticBoard : public ObserverBoardInterface, public DisplayBoardInterface {
+class Statistic : public ObserverInterface {
 	double m_maxt;
 	double m_mint;
-	double m_avet;
+	double m_averaget;
 	int m_count;
 	ParaWeatherData& m_data;
 
 public:
-	StatisticBoard(ParaWeatherData& a) :m_maxt(-1000), m_mint(1000), m_avet(0), m_count(0), m_data(a) {
-		m_data.registerOb(this);
+	Statistic(ParaWeatherData& a) :m_maxt(-1000), m_mint(1000), m_averaget(0), m_count(0), m_data(a) {
+		m_data.registerObj(this);
 	}
 
-	void show() {
+	void show() const override {
 		std::cout << "________StatisticBoard_________" << std::endl;
 		std::cout << "lowest  temperature: " << m_mint << std::endl;
 		std::cout << "highest temperature: " << m_maxt << std::endl;
-		std::cout << "average temperature: " << m_avet << std::endl;
+		std::cout << "average temperature: " << m_averaget << std::endl;
 		std::cout << "_______________________________" << std::endl;
 	}
 
-	void update(double h, double t, double p) {
+	void update(double h, double t, double p) override {
 		++m_count;
 		if (t > m_maxt) {
 			m_maxt = t;
@@ -140,27 +131,23 @@ public:
 		if (t < m_mint) {
 			m_mint = t;
 		}
-		m_avet = (m_avet * (m_count - 1) + t) / m_count;
+		m_averaget = (m_averaget * (m_count - 1) + t) / m_count;
 	}
 };
 
 
 void observer() {
 
-	ParaWeatherData * wdata = new ParaWeatherData;
-	CurrentConditionBoard* currentB = new CurrentConditionBoard(*wdata);
-	StatisticBoard* statisticB = new StatisticBoard(*wdata);
+	ParaWeatherData wdata;
+	CurrentCondition current(wdata);
+	Statistic statistic(wdata);
 
-	wdata->SensorDataChange(10.2, 28.2, 1001);
-	wdata->SensorDataChange(12, 30.12, 1003);
-	wdata->SensorDataChange(10.2, 26, 806);
-	wdata->SensorDataChange(10.3, 35.9, 900);
+	wdata.SensorDataChange(10.2, 28.2, 1001);
+	wdata.SensorDataChange(12, 30.12, 1003);
+	wdata.SensorDataChange(10.2, 26, 806);
+	wdata.SensorDataChange(10.3, 35.9, 900);
 
-	wdata->removeOb(currentB);
+	wdata.removeObj(&current);
 
-	wdata->SensorDataChange(100, 40, 1900);
-
-	delete statisticB;
-	delete currentB;
-	delete wdata;
+	wdata.SensorDataChange(100, 40, 1900);
 }
