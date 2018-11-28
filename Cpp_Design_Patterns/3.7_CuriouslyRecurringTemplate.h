@@ -21,7 +21,7 @@ class Derived : public Base<Derived> {
 /* Object counter
 
 The main purpose of an object counter is retrieving statistics of object creation
-and destruction for a given class. This can be easily solved using CRTP as show below.
+and destruction for a given class. This can be easily solved using CRTP as shown below.
 
 Each time an object of class X is created, the constructor of counter<X> is called,
 incrementing both the created and alive count. Each time an object of class X is

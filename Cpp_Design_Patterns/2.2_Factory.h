@@ -23,18 +23,19 @@ interface is used for the base class, so there is no need to cast the returned o
 Problem
 
 We want to decide at runtime what object is to be created based on some configuration or
-application parameter. When we write the code, we do not know what class should be instantiated.
+application parameter. When we write the code, we do not know what class should be
+instantiated.
 
 Solution
 
-Define an interface for creating an object, but let subclasses decide which class to instantiate.
-Factory Method lets a class defer instantiation to subclasses.
+Define an interface for creating an object, but let subclasses decide which class to
+instantiate. Factory Method lets a class defer instantiation to subclasses.
 
-In the following example, a factory method is used to create laptop or desktop computer objects
-at runtime.
+In the following example, a factory method is used to create laptop or desktop computer
+objects at runtime.
 
-Let's start by defining Computer, which is an abstract base class (interface) and its derived
-classes: Laptop and Desktop.*/
+Let's start by defining Computer, which is an abstract base class (interface) and its
+derived classes: Laptop and Desktop.*/
 
 #include <string>
 
