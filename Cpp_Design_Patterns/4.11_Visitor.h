@@ -85,8 +85,8 @@ public:
 	}
 };
 
-// CarElementPrintVisitor and CarElementDoVisitor show via different implementations
-// that the Car class is unchanged.
+// Concrete classes CarElementPrintVisitor and CarElementDoVisitor show via
+// different implementations that the Car class is unchanged.
 class CarElementPrintVisitor : public CarElementVisitor {
 public:
 	// These are specific implementations added to the original object

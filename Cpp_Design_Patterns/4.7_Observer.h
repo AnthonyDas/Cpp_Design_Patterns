@@ -28,14 +28,14 @@ After subscribing the listening objects will be notified by a way of method call
 #include <algorithm>
 #include <iostream>
 
-// The Abstract Observer
+// Abstract Observer
 class ObserverInterface {
 public:
 	virtual void update(double a, double b, double c) = 0; // Pure virtual
 	virtual void show() const = 0; // Pure virtual
 };
 
-// The Abstract Subject
+// Abstract Subject
 class WeatherDataInterface {
 public:
 	virtual void registerObj(ObserverInterface* ) = 0; // Pure virtual
@@ -43,7 +43,7 @@ public:
 	virtual void notifyObj() = 0;
 };
 
-// The Concrete Subject
+// Concrete Subject
 class ParaWeatherData : public WeatherDataInterface {
 	double m_humidity;
 	double m_temperature;
@@ -75,7 +75,7 @@ protected:
 	}
 };
 
-// A Concrete Observer
+// Concrete Observer
 class CurrentCondition : public ObserverInterface{
 	double m_h;
 	double m_t;
